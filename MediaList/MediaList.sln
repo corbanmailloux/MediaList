@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieList", "MovieList\MovieList.csproj", "{EF9B5B36-D48B-4505-840C-C6EC33921DA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaList", "MediaList\MediaList.csproj", "{C831BAC8-9E4F-4046-81ED-2D8331A379AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EF9B5B36-D48B-4505-840C-C6EC33921DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF9B5B36-D48B-4505-840C-C6EC33921DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF9B5B36-D48B-4505-840C-C6EC33921DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF9B5B36-D48B-4505-840C-C6EC33921DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C831BAC8-9E4F-4046-81ED-2D8331A379AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C831BAC8-9E4F-4046-81ED-2D8331A379AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C831BAC8-9E4F-4046-81ED-2D8331A379AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C831BAC8-9E4F-4046-81ED-2D8331A379AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

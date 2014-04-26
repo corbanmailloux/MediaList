@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MovieList
+namespace MediaList
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -73,7 +73,7 @@ namespace MovieList
         public void UpdateList()
         {
             MainListBox.Items.Refresh();
-            NumMoviesLabel.Content = "Number of Movies: " + currMovieList.Count.ToString();
+            StatusBarText.Text = "Number of Movies: " + currMovieList.Count.ToString();
         }
 
 

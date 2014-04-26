@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieList.Properties {
+namespace MediaList.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -31,6 +31,17 @@ namespace MovieList.Properties {
             }
             set {
                 this["MovieFolders"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection TVFolders {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["TVFolders"]));
+            }
+            set {
+                this["TVFolders"] = value;
             }
         }
     }
