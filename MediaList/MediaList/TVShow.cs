@@ -7,33 +7,28 @@ using System.Threading.Tasks;
 
 namespace MediaList
 {
-    class Movie : IComparable
+    class TVShow : IComparable
     {
-        private FileInfo file;
+        private DirectoryInfo dir;
 
-        public Movie(FileInfo inFile)
+        public TVShow(DirectoryInfo inDir)
         {
-            file = inFile;
+            dir = inDir;
         }
 
         public override string ToString()
         {
-            return file.Name;
+            return dir.Name;
         }
 
         public string Name()
         {
-            return file.Name;
-        }
-
-        public long Size()
-        {
-            return file.Length;
+            return dir.Name;
         }
 
         public string Path()
         {
-            return file.FullName;
+            return dir.FullName;
         }
 
         public void OpenInExplorer()
@@ -42,7 +37,7 @@ namespace MediaList
             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
             startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
             startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = "/C explorer /select, \"" + file.FullName + "\"";
+            startInfo.Arguments = "/C explorer /select, \"" + dir.FullName + "\"";
             process.StartInfo = startInfo;
             process.Start();
         }
@@ -54,15 +49,20 @@ namespace MediaList
                 return 1;
             }
 
-            Movie inMovie = (Movie)obj;
-            if (inMovie != null)
+            TVShow inShow = (TVShow)obj;
+            if (inShow != null)
             {
-                return this.Name().CompareTo(inMovie.Name());
+                return this.Name().CompareTo(inShow.Name());
             }
             else
             {
-                throw new ArgumentException("Object is not a Movie.");
+                throw new ArgumentException("Object is not a TVShow.");
             }
+        }
+
+        public string NewestEpisode()
+        {
+            return "Not yet available.";
         }
     }
 }

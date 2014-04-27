@@ -20,18 +20,41 @@
         </DockPanel>
 
 
-        <ListBox x:Name="MainListBox" MouseDoubleClick="MainListBox_MouseDoubleClick" KeyDown="MainListBox_KeyDown" Margin="10,56,10,134" SelectionChanged="MainListBox_SelectionChanged" TabIndex="1"/>
-        <TextBox x:Name="SearchBox" TextChanged="SearchBox_TextChanged" Height="23" Margin="10,28,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" TabIndex="0"/>
-        <Label x:Name="NameLabel" Content="Name:" HorizontalAlignment="Left" Margin="10,0,0,103" VerticalAlignment="Bottom" Width="55"/>
-        <Label x:Name="PathLabel" Content="Path:" HorizontalAlignment="Left" Margin="10,0,0,72" VerticalAlignment="Bottom" Width="55"/>
-        <Label x:Name="SizeLabel" Content="Size:" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom" Width="55"/>
-        <TextBox x:Name="NameBox" Height="23" Margin="65,0,10,103" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
-        <TextBox x:Name="PathBox" Height="23" Margin="65,0,10,72" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
-        <TextBox x:Name="SizeBox" Height="22" Margin="65,0,10,41" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
-        <StatusBar Height="20" VerticalAlignment="Bottom">
-            <StatusBarItem>
-                <TextBlock x:Name="StatusBarText" FontSize="11"/>
-            </StatusBarItem>
-        </StatusBar>
+        <TabControl HorizontalAlignment="Left" Height="524" Margin="0,20,0,0" VerticalAlignment="Top" Width="517">
+            <TabItem Header="Movie">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="MovieListBox" MouseDoubleClick="MovieListBox_MouseDoubleClick" KeyDown="MovieListBox_KeyDown" Margin="10,38,10,134" SelectionChanged="MovieListBox_SelectionChanged" TabIndex="1"/>
+                    <TextBox x:Name="MovieSearchBox" TextChanged="MovieSearchBox_TextChanged" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0"/>
+                    <Label x:Name="MovieNameLabel" Content="Name:" HorizontalAlignment="Left" Margin="10,0,0,103" VerticalAlignment="Bottom" Width="55"/>
+                    <Label x:Name="MoviePathLabel" Content="Path:" HorizontalAlignment="Left" Margin="10,0,0,72" VerticalAlignment="Bottom" Width="55"/>
+                    <Label x:Name="MovieSizeLabel" Content="Size:" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom" Width="55"/>
+                    <TextBox x:Name="MovieNameBox" Height="23" Margin="65,0,10,103" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                    <TextBox x:Name="MoviePathBox" Height="23" Margin="65,0,10,72" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                    <TextBox x:Name="MovieSizeBox" Height="22" Margin="65,0,10,41" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                    <StatusBar Height="27" VerticalAlignment="Bottom">
+                        <StatusBarItem>
+                            <TextBlock x:Name="MovieStatusBarText" FontSize="11"/>
+                        </StatusBarItem>
+                    </StatusBar>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TV">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="TVListBox" MouseDoubleClick="TVListBox_MouseDoubleClick" KeyDown="TVListBox_KeyDown" Margin="10,38,10,134" SelectionChanged="TVListBox_SelectionChanged" TabIndex="1"/>
+                    <TextBox x:Name="TVSearchBox" TextChanged="TVSearchBox_TextChanged" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0"/>
+                    <Label x:Name="TVNameLabel" Content="Name:" HorizontalAlignment="Left" Margin="10,0,0,103" VerticalAlignment="Bottom" Width="55"/>
+                    <Label x:Name="TVPathLabel" Content="Path:" HorizontalAlignment="Left" Margin="10,0,0,72" VerticalAlignment="Bottom" Width="55"/>
+                    <Label x:Name="TVSizeLabel" Content="Size:" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom" Width="55"/>
+                    <TextBox x:Name="TVNameBox" Height="23" Margin="65,0,10,103" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                    <TextBox x:Name="TVPathBox" Height="23" Margin="65,0,10,72" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                    <TextBox x:Name="TVNewestEpisodeBox" Height="22" Margin="65,0,10,41" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                    <StatusBar Height="27" VerticalAlignment="Bottom">
+                        <StatusBarItem>
+                            <TextBlock x:Name="TVStatusBarText" FontSize="11"/>
+                        </StatusBarItem>
+                    </StatusBar>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
