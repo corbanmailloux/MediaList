@@ -1,41 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaList
 {
+    /*
+     * TODO: Maybe this should extend FileInfo, as there are many passthrough methods.
+     */
     class Movie : IComparable
     {
+        /*
+         * The internal FileInfo representation of this Movie.
+         */
         private FileInfo file;
 
+        /*
+         * Constructor. 
+         * Essentially, store the FileInfo object.
+         */
         public Movie(FileInfo inFile)
         {
             file = inFile;
         }
 
+        /*
+         * Override. Use the file name for ToString.
+         */
         public override string ToString()
         {
             return file.Name;
         }
 
+        /*
+         * Return just the filename with extension.
+         * Ideally, this is the name of a Movie.
+         */
         public string Name()
         {
             return file.Name;
         }
 
+        /*
+         * Return the file size in bytes.
+         */
         public long Size()
         {
             return file.Length;
         }
 
+        /*
+         * Return the full path.
+         */
         public string Path()
         {
             return file.FullName;
         }
 
+        /*
+         * Open a new Windows Explorer windows to the folder that 
+         *  contains this Movie, with the Movie selected.
+         */
         public void OpenInExplorer()
         {
             System.Diagnostics.Process process = new System.Diagnostics.Process();
@@ -47,6 +70,14 @@ namespace MediaList
             process.Start();
         }
 
+        /*
+         * Compares this Movie to another.
+         * Used for sorting.
+         * Returns:
+         *  < 0 if this.Name() is alphebetically before the other.
+         *  0 if this and other have the same name.
+         *  > 0 if this.Name() is alphebetically after the other.
+         */
         public Int32 CompareTo(Object obj)
         {
             if (obj == null)

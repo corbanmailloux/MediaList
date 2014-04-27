@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MediaList
 {
@@ -22,7 +12,6 @@ namespace MediaList
     /// </summary>
     public partial class MainWindow : Window
     {
-
         // These should probably be moved into another class...
         private List<Movie> movieList = new List<Movie>();
         private List<TVShow> tvList = new List<TVShow>();
@@ -31,7 +20,9 @@ namespace MediaList
         private List<Movie> currMovieList = new List<Movie>();
         private List<TVShow> currTVList = new List<TVShow>();
 
-
+        /*
+         * Build the main window, causing the initial indexing.
+         */
         public MainWindow()
         {
             InitializeComponent();
@@ -41,7 +32,28 @@ namespace MediaList
             TVListBox.ItemsSource = currTVList;
         }
 
+        /*
+         * Close this window when the "Exit" menu item is selected.
+         */
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
+        /*
+         * Create and show the "Add or Remove Folders" window.
+         */
+        private void ChangeFolderMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new FolderDialog(this).Show();
+        }
+
+
+        // MOVIE
+
+        /*
+         * Go through each of the Movie folders, indexing each Movie.
+         */
         public void SetUpMovieFolders()
         {
             movieList.Clear();
@@ -71,50 +83,26 @@ namespace MediaList
             UpdateMovieList();
         }
 
-        public void SetUpTVFolders()
-        {
-            tvList.Clear();
-            currTVList.Clear();
-
-            if (Properties.Settings.Default.TVFolders == null || Properties.Settings.Default.TVFolders.Count == 0)
-            {
-                MessageBox.Show("No TV folders are selected to search.\nYou can add folders through the \"Edit\" menu.");
-                Properties.Settings.Default.TVFolders = new System.Collections.Specialized.StringCollection();
-            }
-
-            foreach (String inStr in Properties.Settings.Default.TVFolders)
-            {
-                DirectoryInfo di = new DirectoryInfo(inStr);
-
-                if (di.Exists)
-                {
-                    foreach (DirectoryInfo inDir in di.EnumerateDirectories())
-                    {
-                        // TODO: Do some checking if this is a TV folder?
-                        tvList.Add(new TVShow(inDir));
-                    }
-                }
-            }
-            tvList.Sort();
-            currTVList.AddRange(tvList);
-            UpdateTVList();
-        }
-
-
-
-        // Force the listbox to update.
+        /*
+         * Force the Movie list box to update, also updating the status bar.
+         */
         public void UpdateMovieList()
         {
             MovieListBox.Items.Refresh();
             MovieStatusBarText.Text = "Number of Movies: " + currMovieList.Count.ToString();
         }
 
-        public void UpdateTVList()
+        /*
+         * Open the currently selected movie in Windows Explorer.
+         */
+        private void OpenSelectedMovieInExplorer()
         {
-            TVListBox.Items.Refresh();
-            TVStatusBarText.Text = "Number of TV Shows: " + currTVList.Count.ToString();
+            if (MovieListBox.SelectedIndex != -1)
+            {
+                Movie selection = (Movie)MovieListBox.SelectedItem;
+                selection.OpenInExplorer();
+            }
         }
-
 
         /*
          * Add a listener to add real-time searching.
@@ -157,27 +145,8 @@ namespace MediaList
         }
 
         /*
-         * Open the currently selected movie in Windows Explorer.
+         * Update the Name, Path, and Size boxes when a new Movie is selected.
          */
-        private void OpenSelectedMovieInExplorer()
-        {
-            if (MovieListBox.SelectedIndex != -1)
-            {
-                Movie selection = (Movie)MovieListBox.SelectedItem;
-                selection.OpenInExplorer();
-            }
-        }
-
-        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void ChangeFolderMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            new FolderDialog(this).Show();
-        }
-
         private void MovieListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MovieListBox.SelectedIndex == -1)
@@ -188,7 +157,7 @@ namespace MediaList
             }
             else
             {
-                MovieNameBox.Text = ((Movie) MovieListBox.SelectedItem).Name();
+                MovieNameBox.Text = ((Movie)MovieListBox.SelectedItem).Name();
                 MoviePathBox.Text = ((Movie)MovieListBox.SelectedItem).Path();
                 double size = ((Movie)MovieListBox.SelectedItem).Size();
                 size = size / (1073741824.0); // Convert bytes to GB
@@ -196,35 +165,65 @@ namespace MediaList
             }
         }
 
-        private void TVListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        // TV
+
+        /*
+         * Go through each TV folder, indexing each TV show.
+         */
+        public void SetUpTVFolders()
         {
-            OpenSelectedTVShowInExplorer();
+            tvList.Clear();
+            currTVList.Clear();
+
+            if (Properties.Settings.Default.TVFolders == null || Properties.Settings.Default.TVFolders.Count == 0)
+            {
+                MessageBox.Show("No TV folders are selected to search.\nYou can add folders through the \"Edit\" menu.");
+                Properties.Settings.Default.TVFolders = new System.Collections.Specialized.StringCollection();
+            }
+
+            foreach (String inStr in Properties.Settings.Default.TVFolders)
+            {
+                DirectoryInfo di = new DirectoryInfo(inStr);
+
+                if (di.Exists)
+                {
+                    foreach (DirectoryInfo inDir in di.EnumerateDirectories())
+                    {
+                        // TODO: Do some checking if this is a TV folder?
+                        tvList.Add(new TVShow(inDir));
+                    }
+                }
+            }
+            tvList.Sort();
+            currTVList.AddRange(tvList);
+            UpdateTVList();
         }
 
-        private void TVListBox_KeyDown(object sender, KeyEventArgs e)
+        /*
+         * Force the TV list box to update, also updating the status bar.
+         */
+        public void UpdateTVList()
         {
-            if (e.Key == Key.Enter)
+            TVListBox.Items.Refresh();
+            TVStatusBarText.Text = "Number of TV Shows: " + currTVList.Count.ToString();
+        }
+
+        /*
+         * Open the currently selected TV show in Windows Explorer.
+         */
+        private void OpenSelectedTVShowInExplorer()
+        {
+            if (TVListBox.SelectedIndex != -1)
             {
-                OpenSelectedTVShowInExplorer();
+                TVShow selection = (TVShow)TVListBox.SelectedItem;
+                selection.OpenInExplorer();
             }
         }
 
-        private void TVListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (TVListBox.SelectedIndex == -1)
-            {
-                TVNameBox.Text = String.Empty;
-                TVPathBox.Text = String.Empty;
-                TVNewestEpisodeBox.Text = String.Empty;
-            }
-            else
-            {
-                TVNameBox.Text = ((TVShow)TVListBox.SelectedItem).Name();
-                TVPathBox.Text = ((TVShow)TVListBox.SelectedItem).Path();
-                TVNewestEpisodeBox.Text = ((TVShow)TVListBox.SelectedItem).NewestEpisode(); ;
-            }
-        }
-
+        /*
+         * Add a listener to add real-time searching.
+         */
         private void TVSearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             currTVList.Clear();
@@ -240,16 +239,41 @@ namespace MediaList
         }
 
         /*
-         * Open the currently selected TV show in Windows Explorer.
+         * Catch when an item is double-clicked to open it in explorer.
          */
-        private void OpenSelectedTVShowInExplorer()
+        private void TVListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (TVListBox.SelectedIndex != -1)
+            OpenSelectedTVShowInExplorer();
+        }
+
+        /*
+         * Catch when the Enter key is pressed to open selection in explorer.
+         */
+        private void TVListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
             {
-                TVShow selection = (TVShow)TVListBox.SelectedItem;
-                selection.OpenInExplorer();
+                OpenSelectedTVShowInExplorer();
             }
         }
 
+        /*
+         * Update the Name, Path, and Newest Episode boxes when a new TVShow is selected.
+         */
+        private void TVListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TVListBox.SelectedIndex == -1)
+            {
+                TVNameBox.Text = String.Empty;
+                TVPathBox.Text = String.Empty;
+                TVNewestEpisodeBox.Text = String.Empty;
+            }
+            else
+            {
+                TVNameBox.Text = ((TVShow)TVListBox.SelectedItem).Name();
+                TVPathBox.Text = ((TVShow)TVListBox.SelectedItem).Path();
+                TVNewestEpisodeBox.Text = ((TVShow)TVListBox.SelectedItem).NewestEpisode(); ;
+            }
+        }
     }
 }

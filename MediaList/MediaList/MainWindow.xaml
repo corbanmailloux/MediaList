@@ -1,12 +1,9 @@
 ﻿<Window x:Class="MediaList.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="575" Width="525">
+        Title="MediaList" Height="575" Width="525">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <DockPanel Grid.ColumnSpan="2">
+        <DockPanel>
             <StackPanel>
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="_File">
@@ -19,12 +16,12 @@
             </StackPanel>
         </DockPanel>
 
-
-        <TabControl HorizontalAlignment="Left" Height="524" Margin="0,20,0,0" VerticalAlignment="Top" Width="517">
+        <!--Tabs for the two modes.-->
+        <TabControl Margin="0,20,0,0">
             <TabItem Header="Movie">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox x:Name="MovieListBox" MouseDoubleClick="MovieListBox_MouseDoubleClick" KeyDown="MovieListBox_KeyDown" Margin="10,38,10,134" SelectionChanged="MovieListBox_SelectionChanged" TabIndex="1"/>
                     <TextBox x:Name="MovieSearchBox" TextChanged="MovieSearchBox_TextChanged" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0"/>
+                    <ListBox x:Name="MovieListBox" MouseDoubleClick="MovieListBox_MouseDoubleClick" KeyDown="MovieListBox_KeyDown" Margin="10,38,10,134" SelectionChanged="MovieListBox_SelectionChanged" TabIndex="1"/>
                     <Label x:Name="MovieNameLabel" Content="Name:" HorizontalAlignment="Left" Margin="10,0,0,103" VerticalAlignment="Bottom" Width="55"/>
                     <Label x:Name="MoviePathLabel" Content="Path:" HorizontalAlignment="Left" Margin="10,0,0,72" VerticalAlignment="Bottom" Width="55"/>
                     <Label x:Name="MovieSizeLabel" Content="Size:" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom" Width="55"/>
@@ -44,7 +41,7 @@
                     <TextBox x:Name="TVSearchBox" TextChanged="TVSearchBox_TextChanged" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0"/>
                     <Label x:Name="TVNameLabel" Content="Name:" HorizontalAlignment="Left" Margin="10,0,0,103" VerticalAlignment="Bottom" Width="55"/>
                     <Label x:Name="TVPathLabel" Content="Path:" HorizontalAlignment="Left" Margin="10,0,0,72" VerticalAlignment="Bottom" Width="55"/>
-                    <Label x:Name="TVSizeLabel" Content="Size:" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom" Width="55"/>
+                    <Label x:Name="TVNewestEpisodeLabel" Content="Newest:" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom" Width="55"/>
                     <TextBox x:Name="TVNameBox" Height="23" Margin="65,0,10,103" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
                     <TextBox x:Name="TVPathBox" Height="23" Margin="65,0,10,72" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
                     <TextBox x:Name="TVNewestEpisodeBox" Height="22" Margin="65,0,10,41" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
