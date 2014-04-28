@@ -13,12 +13,14 @@
         <TextBox x:Name="FolderToAddTextBox" Height="23" Margin="10,10,90,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0" Grid.ColumnSpan="4"/>
         <Button x:Name="BrowseButton" Content="Browse..." HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="BrowseButton_Click" TabIndex="1" Grid.Column="3"/>
 
-        <Button x:Name="MovieAddFolderButton" Content="Add Movie Folder" VerticalAlignment="Top" Click="MovieAddFolderButton_Click" Height="20" Margin="10,39,2,0" TabIndex="2"/>
-        <Button x:Name="MovieRemoveFolderButton" Content="Remove Selected Folder" Margin="3,39,4,0" VerticalAlignment="Top" Click="MovieRemoveFolderButton_Click" Height="20" TabIndex="3" Grid.Column="1"/>
-        <ListBox x:Name="MovieFolderListBox" Margin="10,64,4,10" TabIndex="4" Grid.ColumnSpan="2"/>
+        <Button x:Name="MovieAddFolderButton" Content="Add Movie Folder" VerticalAlignment="Top" Click="MovieAddFolderButton_Click" Height="20" Margin="10,63,2,0" TabIndex="2"/>
+        <Button x:Name="MovieRemoveFolderButton" Content="Remove Selected Folder" Margin="3,63,4,0" VerticalAlignment="Top" Click="MovieRemoveFolderButton_Click" Height="20" TabIndex="3" Grid.Column="1"/>
+        <ListBox x:Name="MovieFolderListBox" Margin="10,88,4,10" TabIndex="4" Grid.ColumnSpan="2"/>
 
-        <Button x:Name="TVAddFolderButton" Content="Add TV Folder" Margin="4,39,3,0" VerticalAlignment="Top" Click="TVAddFolderButton_Click" Height="20" TabIndex="5" Grid.Column="2"/>
-        <Button x:Name="TVRemoveFolderButton" Content="Remove Selected Folder" Margin="2,39,10,0" VerticalAlignment="Top" Click="TVRemoveFolderButton_Click" Height="20" TabIndex="6" Grid.Column="3"/>
-        <ListBox x:Name="TVFolderListBox" Margin="4,64,10,10" TabIndex="7" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button x:Name="TVAddFolderButton" Content="Add TV Folder" Margin="4,63,3,0" VerticalAlignment="Top" Click="TVAddFolderButton_Click" Height="20" TabIndex="5" Grid.Column="2"/>
+        <Button x:Name="TVRemoveFolderButton" Content="Remove Selected Folder" Margin="2,63,10,0" VerticalAlignment="Top" Click="TVRemoveFolderButton_Click" Height="20" TabIndex="6" Grid.Column="3"/>
+        <ListBox x:Name="TVFolderListBox" Margin="4,88,10,10" TabIndex="7" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label x:Name="MovieFolderLabel" Content="Movie Folders" HorizontalContentAlignment="Center" Margin="10,32,4,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label x:Name="TVFolderLabel" Content="TV Show Folders" HorizontalContentAlignment="Center" Grid.Column="2" Margin="4,32,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
