@@ -28,8 +28,8 @@
                     <TextBox x:Name="MovieNameBox" Height="23" Margin="65,0,10,103" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
                     <TextBox x:Name="MoviePathBox" Height="23" Margin="65,0,10,72" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
                     <TextBox x:Name="MovieSizeBox" Height="22" Margin="65,0,10,41" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
-                    <StatusBar Height="27" VerticalAlignment="Bottom">
-                        <StatusBarItem>
+                    <StatusBar Height="19" VerticalAlignment="Bottom">
+                        <StatusBarItem Margin="0,0,0,0">
                             <TextBlock x:Name="MovieStatusBarText" FontSize="11"/>
                         </StatusBarItem>
                     </StatusBar>
@@ -45,8 +45,8 @@
                     <TextBox x:Name="TVNameBox" Height="23" Margin="65,0,10,103" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
                     <TextBox x:Name="TVPathBox" Height="23" Margin="65,0,10,72" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
                     <TextBox x:Name="TVNewestEpisodeBox" Height="22" Margin="65,0,10,41" TextWrapping="Wrap" VerticalAlignment="Bottom" IsReadOnly="True"/>
-                    <StatusBar Height="27" VerticalAlignment="Bottom">
-                        <StatusBarItem>
+                    <StatusBar Height="19" VerticalAlignment="Bottom">
+                        <StatusBarItem Margin="0,0,0,0">
                             <TextBlock x:Name="TVStatusBarText" FontSize="11"/>
                         </StatusBarItem>
                     </StatusBar>
