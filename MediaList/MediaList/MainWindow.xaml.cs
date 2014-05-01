@@ -12,6 +12,8 @@ namespace MediaList
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<String> excludeFileList = new List<String>();
+
         // These should probably be moved into another class...
         private List<Movie> movieList = new List<Movie>();
         private List<TVShow> tvList = new List<TVShow>();
@@ -26,6 +28,10 @@ namespace MediaList
         public MainWindow()
         {
             InitializeComponent();
+
+            // This is going to move somewhere else.
+            excludeFileList.Add("Thumbs.db");
+
             SetUpMovieFolders();
             SetUpTVFolders();
             MovieListBox.ItemsSource = currMovieList;
@@ -73,8 +79,11 @@ namespace MediaList
                 {
                     foreach (FileInfo inFile in di.EnumerateFiles())
                     {
-                        // TODO: Do some checking if this is a movie?
-                        movieList.Add(new Movie(inFile));
+                        // Ensure excluded files are... excluded.
+                        if (!excludeFileList.Contains(inFile.Name))
+                        {
+                            movieList.Add(new Movie(inFile));
+                        }
                     }
                 }
             }
