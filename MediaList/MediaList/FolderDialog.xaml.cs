@@ -60,7 +60,7 @@ namespace MediaList
             {
                 if (Properties.Settings.Default.MovieFolders.Contains(FolderToAddTextBox.Text))
                 {
-                    System.Windows.MessageBox.Show("This folder is already added.");
+                    System.Windows.MessageBox.Show("This folder has already been added.");
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace MediaList
             {
                 if (Properties.Settings.Default.TVFolders.Contains(FolderToAddTextBox.Text))
                 {
-                    System.Windows.MessageBox.Show("This folder is already added.");
+                    System.Windows.MessageBox.Show("This folder has already been added.");
                 }
                 else
                 {

@@ -11,6 +11,7 @@
                     </MenuItem>
                     <MenuItem Header="_Edit">
                         <MenuItem x:Name="ChangeFolderMenuItem" Header="_Change Folders" Click="ChangeFolderMenuItem_Click"/>
+                        <MenuItem x:Name="OptionsMenuItem" Header="_Options" Click="OptionsMenuItem_Click"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>

@@ -1,0 +1,14 @@
+﻿<Window x:Class="MediaList.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Closing="Window_Closing"
+        Title="Options" Height="325" Width="333">
+    <Grid>
+        <Label x:Name="ExcludedFileLabel" Content="Excluded Files" HorizontalContentAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="ExcludedFilesListBox" Margin="10,69,10,10"/>
+        <TextBox x:Name="ExcludedFileTextBox" Height="23" Margin="10,41,60,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="AddExcludedFileButton" Content="+" Margin="0,41,35,0" VerticalAlignment="Top" Width="20" FontWeight="Bold" Click="AddExcludedFileButton_Click" HorizontalAlignment="Right" Height="23"/>
+        <Button x:Name="RemoveExcludedFileButton" Content="-" HorizontalAlignment="Right" Margin="0,41,10,0" VerticalAlignment="Top" Width="20" FontWeight="Bold" Click="RemoveExcludedFileButton_Click" Height="23"/>
+
+    </Grid>
+</Window>

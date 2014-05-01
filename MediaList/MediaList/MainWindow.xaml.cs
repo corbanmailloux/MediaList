@@ -12,8 +12,6 @@ namespace MediaList
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<String> excludeFileList = new List<String>();
-
         // These should probably be moved into another class...
         private List<Movie> movieList = new List<Movie>();
         private List<TVShow> tvList = new List<TVShow>();
@@ -29,9 +27,7 @@ namespace MediaList
         {
             InitializeComponent();
 
-            // This is going to move somewhere else.
-            excludeFileList.Add("Thumbs.db");
-
+            SetUpExcludedFiles();
             SetUpMovieFolders();
             SetUpTVFolders();
             MovieListBox.ItemsSource = currMovieList;
@@ -52,6 +48,23 @@ namespace MediaList
         private void ChangeFolderMenuItem_Click(object sender, RoutedEventArgs e)
         {
             new FolderDialog(this).Show();
+        }
+
+        /*
+         * Create and show the "Options" window.
+         */
+        private void OptionsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            new OptionsWindow(this).Show();
+        }
+
+
+        public void SetUpExcludedFiles()
+        {
+            if (Properties.Settings.Default.ExcludedFiles == null || Properties.Settings.Default.ExcludedFiles.Count == 0)
+            {
+                Properties.Settings.Default.ExcludedFiles = new System.Collections.Specialized.StringCollection();
+            }
         }
 
 
@@ -80,7 +93,7 @@ namespace MediaList
                     foreach (FileInfo inFile in di.EnumerateFiles())
                     {
                         // Ensure excluded files are... excluded.
-                        if (!excludeFileList.Contains(inFile.Name))
+                        if (!Properties.Settings.Default.ExcludedFiles.Contains(inFile.Name))
                         {
                             movieList.Add(new Movie(inFile));
                         }
@@ -284,5 +297,6 @@ namespace MediaList
                 TVNewestEpisodeBox.Text = ((TVShow)TVListBox.SelectedItem).NewestEpisode(); ;
             }
         }
+
     }
 }

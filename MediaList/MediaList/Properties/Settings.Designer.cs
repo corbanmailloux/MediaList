@@ -44,5 +44,16 @@ namespace MediaList.Properties {
                 this["TVFolders"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection ExcludedFiles {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ExcludedFiles"]));
+            }
+            set {
+                this["ExcludedFiles"] = value;
+            }
+        }
     }
 }
