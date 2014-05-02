@@ -88,6 +88,9 @@ namespace MediaList
             }
         }
 
+        /*
+         * Go through each folder in the TV Show and find the highest numbered episode.
+         */
         public string NewestEpisode()
         {
             return "Not yet available.";

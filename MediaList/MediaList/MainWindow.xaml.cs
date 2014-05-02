@@ -58,10 +58,12 @@ namespace MediaList
             new OptionsWindow(this).Show();
         }
 
-
-        public void SetUpExcludedFiles()
+        /*
+         * Ensure that the excluded file list is created.
+         */
+        private void SetUpExcludedFiles()
         {
-            if (Properties.Settings.Default.ExcludedFiles == null || Properties.Settings.Default.ExcludedFiles.Count == 0)
+            if (Properties.Settings.Default.ExcludedFiles == null)
             {
                 Properties.Settings.Default.ExcludedFiles = new System.Collections.Specialized.StringCollection();
             }
@@ -108,7 +110,7 @@ namespace MediaList
         /*
          * Force the Movie list box to update, also updating the status bar.
          */
-        public void UpdateMovieList()
+        private void UpdateMovieList()
         {
             MovieListBox.Items.Refresh();
             MovieStatusBarText.Text = "Number of Movies: " + currMovieList.Count.ToString();
@@ -225,7 +227,7 @@ namespace MediaList
         /*
          * Force the TV list box to update, also updating the status bar.
          */
-        public void UpdateTVList()
+        private void UpdateTVList()
         {
             TVListBox.Items.Refresh();
             TVStatusBarText.Text = "Number of TV Shows: " + currTVList.Count.ToString();
@@ -297,6 +299,5 @@ namespace MediaList
                 TVNewestEpisodeBox.Text = ((TVShow)TVListBox.SelectedItem).NewestEpisode(); ;
             }
         }
-
     }
 }
