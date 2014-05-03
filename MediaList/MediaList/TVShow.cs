@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace MediaList
@@ -12,6 +13,11 @@ namespace MediaList
          * The internal DirectoryInfo representation of this TVShow.
          */
         private DirectoryInfo dir;
+
+        /*
+         * String representation of the highest season and episode.
+         */
+        private String highString = null;
 
         /*
          * Constructor. 
@@ -91,9 +97,43 @@ namespace MediaList
         /*
          * Go through each folder in the TV Show and find the highest numbered episode.
          */
-        public string NewestEpisode()
+        public String NewestEpisode()
         {
-            return "Not yet available.";
+            // Avoid recreating this string if it's already been built.
+            if (String.IsNullOrEmpty(highString))
+            {
+                int highSeason = 0;
+                int highEpisode = 0;
+
+                foreach (DirectoryInfo season in dir.EnumerateDirectories("Season *"))
+                {
+                    if (Int32.Parse(season.Name.Substring(7)) > highSeason)
+                    {
+                        highEpisode = 0;
+                        foreach (FileInfo episode in season.EnumerateFiles("* - S??E?? - *"))
+                        {
+                            string[] split1 = episode.Name.Split(new string[] { " - S" }, StringSplitOptions.None);
+                            string[] split2 = split1[1].Split(new string[] { " - " }, StringSplitOptions.None);
+                            string[] split3 = split2[0].Split(new string[] { "E" }, StringSplitOptions.None);
+                            if (Int32.Parse(split3[1]) > highEpisode)
+                            {
+                                highSeason = Int32.Parse(split3[0]);
+                                highEpisode = Int32.Parse(split3[1]);
+                            }
+                        }
+                    }
+                }
+                if (highSeason > 0 && highEpisode > 0)
+                {
+                    highString = ("S" + highSeason.ToString().PadLeft(2, '0') + "E" + highEpisode.ToString().PadLeft(2, '0'));
+                }
+                else
+                {
+                    highString = "Not available.";
+                }
+            }
+            
+            return highString;
         }
     }
 }
