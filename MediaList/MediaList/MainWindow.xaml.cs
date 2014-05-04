@@ -299,5 +299,21 @@ namespace MediaList
                 TVNewestEpisodeBox.Text = ((TVShow)TVListBox.SelectedItem).NewestEpisode(); ;
             }
         }
+
+        private void TVCheckMissingEpisodesMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (TVListBox.SelectedIndex != -1)
+            {
+                MessageBox.Show(((TVShow)TVListBox.SelectedItem).Name() + ": " + ((TVShow)TVListBox.SelectedItem).MissingEpisodes(), "Missing Episodes");
+            }
+        }
+
+        private void TVSeeFileExtensionsUsedMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (TVListBox.SelectedIndex != -1)
+            {
+                MessageBox.Show(((TVShow)TVListBox.SelectedItem).Name() + ": " + ((TVShow)TVListBox.SelectedItem).ExtensionsUsed(), "Extensions Used");
+            }
+        }
     }
 }

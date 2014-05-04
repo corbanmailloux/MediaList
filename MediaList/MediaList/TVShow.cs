@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
@@ -18,6 +20,10 @@ namespace MediaList
          * String representation of the highest season and episode.
          */
         private String highString = null;
+
+        private String missingEpisodes = null;
+
+        private String extensions = null;
 
         /*
          * Constructor. 
@@ -134,6 +140,78 @@ namespace MediaList
             }
             
             return highString;
+        }
+
+        public String MissingEpisodes()
+        {
+            // Avoid recreating this string if it's already been built.
+            if (String.IsNullOrEmpty(missingEpisodes))
+            {
+                int highestSeasonNum = 0;
+                List<String> missingEps = new List<string>();
+                Dictionary<int, List<int>> seasonEpisodes = new Dictionary<int, List<int>>();
+
+                foreach (DirectoryInfo season in dir.EnumerateDirectories("Season *"))
+                {
+                    List<int> thisSeason = new List<int>();
+                    int thisSeasonNum = Int32.Parse(season.Name.Substring(7));
+                    if (thisSeasonNum > highestSeasonNum) {
+                        highestSeasonNum = thisSeasonNum;
+                    }
+                    seasonEpisodes.Add(thisSeasonNum, thisSeason);
+                    
+                    foreach (FileInfo episode in season.EnumerateFiles("* - S??E?? - *"))
+                    {
+                        string[] split1 = episode.Name.Split(new string[] { " - S" }, StringSplitOptions.None);
+                        string[] split2 = split1[1].Split(new string[] { " - " }, StringSplitOptions.None);
+                        string[] split3 = split2[0].Split(new string[] { "E" }, StringSplitOptions.None);
+                        thisSeason.Add(Int32.Parse(split3[1]));
+                    }
+                }
+                
+                // Find if there are missing numbers in the hashset for each season.
+                for (int i = 1; i <= highestSeasonNum; i++) {
+                    if (seasonEpisodes.ContainsKey(i)) {
+                        List<int> currEps = seasonEpisodes[i];
+                        currEps.Sort();
+                        int maxEpNum = currEps[currEps.Count - 1];
+                        for (int j = 1; j <= maxEpNum; j++)
+                        {
+                            if (!currEps.Contains(j))
+                            {
+                                missingEps.Add("S" + i.ToString().PadLeft(2, '0') + "E" + j.ToString().PadLeft(2, '0'));
+                            }
+                        }
+                    } else {
+                        missingEps.Add("S" + i.ToString().PadLeft(2, '0') + "E**");
+                    }
+                }
+
+                if (missingEps.Count == 0)
+                {
+                    missingEpisodes = "None";
+                }
+                else
+                {
+                    missingEpisodes = String.Empty;
+                    bool firstDone = false;
+                    foreach (string missing in missingEps)
+                    {
+                        if (firstDone)
+                        {
+                            missingEpisodes += (", ");
+                        }
+                        missingEpisodes += (missing);
+                        firstDone = true;
+                    }
+                }
+            }
+            return missingEpisodes;
+        }
+
+        public String ExtensionsUsed()
+        {
+            return ("Not yet implemented.");
         }
     }
 }
