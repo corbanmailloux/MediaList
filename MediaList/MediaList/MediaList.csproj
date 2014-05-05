@@ -56,6 +56,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </ApplicationDefinition>
     <Compile Include="TVShow.cs" />
     <Compile Include="OptionsWindow.xaml.cs">
@@ -72,6 +73,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="FolderDialog.xaml.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -87,6 +89,7 @@
     <Compile Include="Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

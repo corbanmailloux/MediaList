@@ -1,45 +1,53 @@
-﻿using System;
-using System.IO;
-using System.Windows;
-using System.Windows.Forms;
-
+﻿// <copyright file="FolderDialog.xaml.cs" company="corb.co">
+//     corb.co. All rights reserved.
+// </copyright>
+// <author>Corban Mailloux</author>
 namespace MediaList
 {
+    using System;
+    using System.IO;
+    using System.Windows;
+    using System.Windows.Forms;
+    
     /// <summary>
-    /// Interaction logic for FolderDialog.xaml
+    /// Interaction logic for the FolderDialog.
     /// </summary>
     public partial class FolderDialog : Window
     {
-        /*
-         * Keep the MainWindow around.
-         */
+        /// <summary>
+        /// Keep the MainWindow around.
+        /// </summary>
         private MainWindow mainWindow;
 
-        /*
-         * Create the "Add or Remove Folders" window.
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FolderDialog"/> class.
+        /// Create the "Add or Remove Folders" window.
+        /// </summary>
+        /// <param name="main">The MainWindow that created this.</param>
         public FolderDialog(MainWindow main)
         {
-            mainWindow = main;
-            InitializeComponent();
+            this.mainWindow = main;
+            this.InitializeComponent();
 
             // Set up the listboxes
             MovieFolderListBox.ItemsSource = Properties.Settings.Default.MovieFolders;
             TVFolderListBox.ItemsSource = Properties.Settings.Default.TVFolders;
         }
 
-        /*
-         * Force the listboxes to update.
-         */
+        /// <summary>
+        /// Force the list boxes to update.
+        /// </summary>
         private void UpdateList()
         {
             MovieFolderListBox.Items.Refresh();
             TVFolderListBox.Items.Refresh();
         }
 
-        /*
-         * Prompt the user to select a folder.
-         */
+        /// <summary>
+        /// Prompt the user to select a folder.
+        /// </summary>
+        /// <param name="sender">The caller.</param>
+        /// <param name="e">The arguments.</param>
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog dlg = new FolderBrowserDialog();
@@ -51,12 +59,14 @@ namespace MediaList
             }
         }
 
-        /*
-         * Add the folder to the movie folder list.
-         */
+        /// <summary>
+        /// Add the folder to the movie folder list.
+        /// </summary>
+        /// <param name="sender">The caller.</param>
+        /// <param name="e">The arguments.</param>
         private void MovieAddFolderButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidateFolder(FolderToAddTextBox.Text))
+            if (this.ValidateFolder(FolderToAddTextBox.Text))
             {
                 if (Properties.Settings.Default.MovieFolders.Contains(FolderToAddTextBox.Text))
                 {
@@ -65,29 +75,34 @@ namespace MediaList
                 else
                 {
                     Properties.Settings.Default.MovieFolders.Add(FolderToAddTextBox.Text);
-                    UpdateList();
+                    this.UpdateList();
                 }
             }
         }
 
-        /*
-         * Remove the selected movie folder from the list.
-         */
+        /// <summary>
+        /// Remove the selected movie folder from the movie folder list.
+        /// </summary>
+        /// <param name="sender">The caller.</param>
+        /// <param name="e">The arguments.</param>
         private void MovieRemoveFolderButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MovieFolderListBox.SelectedIndex != -1) // Ensure that there is a selection.
+            // Ensure that there is a selection.
+            if (MovieFolderListBox.SelectedIndex != -1)
             {
                 Properties.Settings.Default.MovieFolders.RemoveAt(MovieFolderListBox.SelectedIndex);
-                UpdateList();
+                this.UpdateList();
             }
         }
 
-        /*
-         * Add the folder to the TV folder list.
-         */
+        /// <summary>
+        /// Add the folder to the TV folder list.
+        /// </summary>
+        /// <param name="sender">The caller.</param>
+        /// <param name="e">The arguments.</param>
         private void TVAddFolderButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidateFolder(FolderToAddTextBox.Text))
+            if (this.ValidateFolder(FolderToAddTextBox.Text))
             {
                 if (Properties.Settings.Default.TVFolders.Contains(FolderToAddTextBox.Text))
                 {
@@ -96,33 +111,41 @@ namespace MediaList
                 else
                 {
                     Properties.Settings.Default.TVFolders.Add(FolderToAddTextBox.Text);
-                    UpdateList();
+                    this.UpdateList();
                 }                
             }
         }
 
-        /*
-         * Remove the selected TV folder from the list.
-         */
+        /// <summary>
+        /// Remove the selected TV folder from the TV folder list.
+        /// </summary>
+        /// <param name="sender">The caller.</param>
+        /// <param name="e">The arguments.</param>
         private void TVRemoveFolderButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TVFolderListBox.SelectedIndex != -1) // Ensure that there is a selection.
+            // Ensure that there is a selection.
+            if (TVFolderListBox.SelectedIndex != -1) 
             {
                 Properties.Settings.Default.TVFolders.RemoveAt(TVFolderListBox.SelectedIndex);
-                UpdateList();
+                this.UpdateList();
             }
         }
 
-        /*
-         * Validate that the folder is populated and contains a valid folder.
-         */
+        /// <summary>
+        /// Validates the the path is not empty and is a valid folder.
+        /// </summary>
+        /// <param name="path">The path to validate.</param>
+        /// <returns>
+        /// true if valid.
+        /// false if not valid.
+        /// </returns>
         private bool ValidateFolder(string path)
         {
-            if (!String.IsNullOrEmpty(path) && !String.IsNullOrWhiteSpace(path))
+            if (!string.IsNullOrEmpty(path) && !string.IsNullOrWhiteSpace(path))
             {
                 try
                 {
-                    if (!(new DirectoryInfo(path).Exists))
+                    if (!new DirectoryInfo(path).Exists)
                     {
                         System.Windows.MessageBox.Show("Invalid folder path.");
                         return false;
@@ -133,19 +156,23 @@ namespace MediaList
                     System.Windows.MessageBox.Show("Invalid folder path.");
                     return false;
                 }
+
                 return true;
             }
+
             return false;
         }
 
-        /*
-         * Save the new lists and update MainWindow before closing.
-         */
+        /// <summary>
+        /// Save the lists and update MainWindow before closing.
+        /// </summary>
+        /// <param name="sender">The caller.</param>
+        /// <param name="e">The arguments.</param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Properties.Settings.Default.Save();
-            mainWindow.SetUpMovieFolders();
-            mainWindow.SetUpTVFolders();
+            this.mainWindow.SetUpMovieFolders();
+            this.mainWindow.SetUpTVFolders();
         }
     }
 }
