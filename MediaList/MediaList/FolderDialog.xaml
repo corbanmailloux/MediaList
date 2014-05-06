@@ -10,6 +10,7 @@
             <ColumnDefinition Width="173*"/>
             <ColumnDefinition Width="178*"/>
         </Grid.ColumnDefinitions>
+        
         <TextBox x:Name="FolderToAddTextBox" Height="23" Margin="10,10,90,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0" Grid.ColumnSpan="4"/>
         <Button x:Name="BrowseButton" Content="Browse..." HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="BrowseButton_Click" TabIndex="1" Grid.Column="3"/>
 
