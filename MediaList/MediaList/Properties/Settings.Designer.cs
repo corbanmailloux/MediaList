@@ -23,7 +23,11 @@ namespace MediaList.Properties {
             }
         }
         
+        /// <summary>
+        /// The list of folder paths that contain Movies.
+        /// </summary>
         [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsDescriptionAttribute("The list of folder paths that contain Movies.")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::System.Collections.Specialized.StringCollection MovieFolders {
             get {
@@ -34,7 +38,11 @@ namespace MediaList.Properties {
             }
         }
         
+        /// <summary>
+        /// The list of folder paths that contain TV show folders.
+        /// </summary>
         [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsDescriptionAttribute("The list of folder paths that contain TV show folders.")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::System.Collections.Specialized.StringCollection TVFolders {
             get {

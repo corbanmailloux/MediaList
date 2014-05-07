@@ -2,10 +2,10 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MediaList.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="MovieFolders" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="MovieFolders" Description="The list of folder paths that contain Movies." Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="TVFolders" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="TVFolders" Description="The list of folder paths that contain TV show folders." Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ExcludedFiles" Type="System.Collections.Specialized.StringCollection" Scope="User">
