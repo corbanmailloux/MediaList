@@ -160,6 +160,8 @@ namespace MediaList
             }
         }
 
+        // Movie Section
+
         /// <summary>
         /// Force the Movie list box to update, also updating the status bar.
         /// </summary>
@@ -208,6 +210,19 @@ namespace MediaList
         }
 
         /// <summary>
+        /// Allow clearing the search box when escape is pressed.
+        /// </summary>
+        /// <param name="sender">The caller.</param>
+        /// <param name="e">The arguments.</param>
+        private void MovieSearchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                MovieSearchBox.Clear();
+            }
+        }
+
+        /// <summary>
         /// Catch when an item is double-clicked to open it in explorer.
         /// </summary>
         /// <param name="sender">The caller.</param>
@@ -253,6 +268,8 @@ namespace MediaList
             }
         }
 
+        // TV Section
+
         /// <summary>
         /// Force the TV list box to update, also updating the status bar.
         /// </summary>
@@ -292,6 +309,19 @@ namespace MediaList
 
             // Force an update.
             this.UpdateTVList();
+        }
+
+        /// <summary>
+        /// Allow clearing the search box when escape is pressed.
+        /// </summary>
+        /// <param name="sender">The caller.</param>
+        /// <param name="e">The arguments.</param>
+        private void TVSearchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                TVSearchBox.Clear();
+            }
         }
 
         /// <summary>

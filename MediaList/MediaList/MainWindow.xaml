@@ -21,7 +21,7 @@
         <TabControl Margin="0,20,0,0">
             <TabItem Header="Movie">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="MovieSearchBox" TextChanged="MovieSearchBox_TextChanged" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0"/>
+                    <TextBox x:Name="MovieSearchBox" TextChanged="MovieSearchBox_TextChanged" KeyDown="MovieSearchBox_KeyDown" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0"/>
                     <ListBox x:Name="MovieListBox" MouseDoubleClick="MovieListBox_MouseDoubleClick" KeyDown="MovieListBox_KeyDown" Margin="10,38,10,134" SelectionChanged="MovieListBox_SelectionChanged" TabIndex="1"/>
                     <Label x:Name="MovieNameLabel" Content="Name:" HorizontalAlignment="Left" Margin="10,0,0,103" VerticalAlignment="Bottom" Width="55"/>
                     <Label x:Name="MoviePathLabel" Content="Path:" HorizontalAlignment="Left" Margin="10,0,0,72" VerticalAlignment="Bottom" Width="55"/>
@@ -47,7 +47,7 @@
                             </ContextMenu>
                         </ListBox.ContextMenu>
                     </ListBox>
-                    <TextBox x:Name="TVSearchBox" TextChanged="TVSearchBox_TextChanged" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0"/>
+                    <TextBox x:Name="TVSearchBox" TextChanged="TVSearchBox_TextChanged" KeyDown="TVSearchBox_KeyDown" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TabIndex="0"/>
                     <Label x:Name="TVNameLabel" Content="Name:" HorizontalAlignment="Left" Margin="10,0,0,103" VerticalAlignment="Bottom" Width="55"/>
                     <Label x:Name="TVPathLabel" Content="Path:" HorizontalAlignment="Left" Margin="10,0,0,72" VerticalAlignment="Bottom" Width="55"/>
                     <Label x:Name="TVNewestEpisodeLabel" Content="Newest:" HorizontalAlignment="Left" Margin="10,0,0,41" VerticalAlignment="Bottom" Width="55"/>
