@@ -244,17 +244,35 @@ namespace MediaList
         /// <summary>
         /// Find all of the file extensions used by files in this series.
         /// </summary>
-        /// <returns>String (".EXT, .EXT") of extensions used.</returns>
+        /// <returns>String (".ext, .ext") of extensions used.</returns>
         public string ExtensionsUsed()
         {
+            // Avoid recreating this string if it's already been built.
             if (string.IsNullOrEmpty(this.extensions))
             {
-                return "Not yet implemented.";
+                HashSet<string> fileExts = new HashSet<string>();
+                foreach (DirectoryInfo season in this.dir.EnumerateDirectories("Season *"))
+                {
+                    foreach (FileInfo episode in season.EnumerateFiles("* - S??E?? - *"))
+                    {
+                        fileExts.Add(episode.Extension.ToLower());
+                    }
+                }
+
+                bool firstDone = false;
+                foreach (string ext in fileExts)
+                {
+                    if (firstDone)
+                    {
+                        this.extensions += ", ";
+                    }
+
+                    this.extensions += ext;
+                    firstDone = true;
+                }
             }
-            else
-            {
-                return this.extensions;
-            }
+            
+            return this.extensions;
         }
     }
 }
