@@ -348,7 +348,7 @@ namespace MediaList
         }
         
         /// <summary>
-        /// Update the Name, Path, and Newest Episode boxes when a new TVShow is selected.
+        /// Update the Name, Path, Newest, and Missing boxes when a new TVShow is selected.
         /// </summary>
         /// <param name="sender">The caller.</param>
         /// <param name="e">The arguments.</param>
@@ -365,19 +365,7 @@ namespace MediaList
                 TVNameBox.Text = ((TVShow)TVListBox.SelectedItem).Name();
                 TVPathBox.Text = ((TVShow)TVListBox.SelectedItem).Path();
                 TVNewestEpisodeBox.Text = ((TVShow)TVListBox.SelectedItem).NewestEpisode();
-            }
-        }
-
-        /// <summary>
-        /// Generate a MessageBox with the missing episodes.
-        /// </summary>
-        /// <param name="sender">The caller.</param>
-        /// <param name="e">The arguments.</param>
-        private void TVCheckMissingEpisodesMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            if (TVListBox.SelectedIndex != -1)
-            {
-                MessageBox.Show(((TVShow)TVListBox.SelectedItem).Name() + ": " + ((TVShow)TVListBox.SelectedItem).MissingEpisodes(), "Missing Episodes");
+                TVMissingEpisodesBox.Text = ((TVShow)TVListBox.SelectedItem).MissingEpisodes();
             }
         }
 
